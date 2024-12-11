@@ -74,7 +74,6 @@ const loadMealsByArea = async(name) => {
 }
 
 const loadMealsByType = async (type, keyword) => {
-    console.log(type, keyword);
     
     let data;
     switch (type) {

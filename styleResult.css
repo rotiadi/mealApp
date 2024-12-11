@@ -3,12 +3,13 @@
 
 .results-cards-container{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
 .card-meal {
-    box-shadow: 10px 10px 20px lightgray;    
+    box-shadow: 10px 10px 20px rgb(80, 56, 56);   
+    background-color: rgb(136, 163, 172); 
 }
 
 .card-meal:hover{
@@ -17,6 +18,35 @@
 
 .card-meal img {
     width: 100%;
-    height: 50%;
+    height: 75%;
     object-fit: cover;
+    padding: 10px;
+}
+
+.card-meal h2 {
+    text-align: center;
+    letter-spacing: 2px;
+    padding: 10px;
+    font-size: 30px;
+   
+}
+
+.card-meal h3 {
+    text-align: left;
+    font-size: 20px;
+    letter-spacing: 2px;
+    padding-left: 20px;
+    color:rgb(47, 16, 226)
+}
+
+.card-meal h4 {
+    text-align: left;
+    letter-spacing: 2px;
+    padding-left: 20px;
+    color:rgb(21, 85, 24)
+}
+
+.message-result {
+    padding-bottom: 20px;
+    font-size: 30px;
 }
