@@ -25,8 +25,6 @@ searchButton.addEventListener('click',() => {
     //TODO -- SEARCH METHOD
     loadMealsByType(searchType.value, keyword)
         .then(data => {
-            console.log(data);
-            
             // write the message of search
 
             if(!data){
@@ -46,6 +44,7 @@ searchButton.addEventListener('click',() => {
                
                 const cardMeal = document.createElement('div');
                 cardMeal.classList.add('card-meal');
+                cardMeal.id= meal.idMeal;
                 
                 const cardImg = document.createElement('img');
                 cardImg.src = meal.strMealThumb;
@@ -64,6 +63,27 @@ searchButton.addEventListener('click',() => {
                 cardMeal.appendChild(cardTitle);
                 cardMeal.appendChild(cardCategory);
                 cardMeal.appendChild(cardArea);
+
+                cardMeal.addEventListener('click', (e) => {
+                    
+                    loadMealById(e.currentTarget.id).then(data => {
+                            console.log(data[0]);
+                        document.querySelector('.modal-title').innerText = data[0].strMeal;                                               
+                        document.querySelector('.modal-category').innerText = data[0].strCategory;
+                        document.querySelector('.modal-area').innerText = data[0].strArea;
+                        document.querySelector('.modal-img').src = data[0].strMealThumb; 
+                        document.querySelector('.modal-instructions').innerText = data[0].strInstructions;
+                        let ingredients =[];
+                        for (let i=1; i<=10; i++){
+                            if( data[0]['strIngredient'+i])
+                                ingredients.push({name: data[0]['strIngredient'+i], qty: data[0]['strMeasure'+i]})
+                        }
+
+                        document.querySelector('.modal-ingredients').innerText = ingredients.map(item => item.name + ' - ' + item.qty).join('\n')
+                            
+                    });
+                    modal.style.display = "block";
+                })
 
                 resultCardContainer.appendChild(cardMeal);
             });

@@ -96,3 +96,17 @@ const loadMealsByType = async (type, keyword) => {
 
     return data;
 }
+
+///load meal by id
+const loadMealById = async(id) => {
+    
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+    
+    if(response.status !== 200){
+        throw new Error("Could not load data!");
+    }
+
+    const meal = await response.json();
+   
+    return meal.meals;
+}

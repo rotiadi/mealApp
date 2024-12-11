@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="modal.css">
     <link rel="stylesheet" href="styleSearch.css">
     <link rel="stylesheet" href="styleResult.css">
     <title>Meal App API</title>
@@ -36,10 +37,36 @@
             </div>
         </div>
     </div>
-    <hr>
+
+    <div id="myModal" class="modal">
+
+        <div class="modal-content">
+          <div class="modal-div1">
+            <span class="close">&times;</span>
+            <h1 class="modal-title"></h1>
+            
+          </div>
+          <div class="modal-div2">
+            <h2 class="modal-category"></h2>
+            <h2 class="modal-area"></h2>
+          </div>
+          <div class="modal-div3">
+            <img src="" alt="" class="modal-img">
+            <p class="modal-instructions"></p>
+          </div>
+          <div class="modal-div4">
+            <h6>Ingredients</h6>
+            <ul class="modal-ingredients"></ul>
+          </div>
+          
+          
+        </div>
+      
+    </div>
+  
 
     <!--Scripts-->
-
+    <script src="modal.js"></script>
     <script src="loadData.js"></script>
     <script src="app.js"></script>
 
