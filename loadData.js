@@ -1,112 +1,120 @@
-
 // load data
-
 
 //load categories
 const loadCategories = async () => {
-    const  response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
-    
-    if(response.status !== 200){
-        throw new Error('Could not load categories!')
-    }
+  const response = await fetch(
+    "https://www.themealdb.com/api/json/v1/1/list.php?c=list"
+  );
 
-    const categories = await response.json();
+  if (response.status !== 200) {
+    throw new Error("Could not load categories!");
+  }
 
-    return categories.meals;
-}
+  const categories = await response.json();
+
+  return categories.meals;
+};
 
 //load areas
 const loadAreas = async () => {
-    const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
-    
-    if(response.status !== 200){
-        throw new Error('Could not load areas!')
-    }
+  const response = await fetch(
+    "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
+  );
 
-    const areas = await response.json();
+  if (response.status !== 200) {
+    throw new Error("Could not load areas!");
+  }
 
-    return areas.meals;
-}
+  const areas = await response.json();
+
+  return areas.meals;
+};
 
 // load meals by Name
 
-const loadMealsByName = async(name) => {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`);
+const loadMealsByName = async (name) => {
+  const response = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`
+  );
 
-    if(response.status !== 200){
-        throw new Error("Could not load data!");
-        
-    }
+  if (response.status !== 200) {
+    throw new Error("Could not load data!");
+  }
 
-    const meals = await response.json();
-    
-    return meals.meals;
-}
+  const meals = await response.json();
+
+  return meals.meals;
+};
 
 // load meals by category
 
-const loadMealsByCategory = async(name) => {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${name}`);
+const loadMealsByCategory = async (name) => {
+  const response = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/filter.php?c=${name}`
+  );
 
-    if(response.status !== 200){
-        throw new Error("Could not load data!");
-        
-    }
+  if (response.status !== 200) {
+    throw new Error("Could not load data!");
+  }
 
-    const meals = await response.json();
-    
-    return meals.meals;
-}
+  const meals = await response.json();
+
+  return meals.meals;
+};
 
 // load meals by area
 
-const loadMealsByArea = async(name) => {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${name}`);
+const loadMealsByArea = async (name) => {
+  const response = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/filter.php?a=${name}`
+  );
 
-    if(response.status !== 200){
-        throw new Error("Could not load data!");
-        
-    }
+  if (response.status !== 200) {
+    throw new Error("Could not load data!");
+  }
 
-    const meals = await response.json();
-    
-    return meals.meals;
-}
+  const meals = await response.json();
+
+  return meals.meals;
+};
 
 const loadMealsByType = async (type, keyword) => {
-    
-    let data;
-    switch (type) {
-        case 'Name':
-                       
-            data = await loadMealsByName(keyword)
-            break;
-        case 'Category':
-           
-            data = await loadMealsByCategory(keyword)
-            break;
-        case 'Area':
-            
-            data = await loadMealsByArea(keyword)
-            break;
-    
-        default:
-            break;
-    }
+  let data;
+  /* const dataByName = await loadMealsByName(keyword);
+  const dataByCategory = await loadMealsByCategory(keyword);
+  const dataByArea = await loadMealsByArea(keyword);
 
-    return data;
-}
+  data = dataByName || dataByCategory || dataByArea; */
+
+  switch (type) {
+    case "Name":
+      data = await loadMealsByName(keyword);
+      break;
+    case "Category":
+      data = await loadMealsByCategory(keyword);
+      break;
+    case "Area":
+      data = await loadMealsByArea(keyword);
+      break;
+
+    default:
+      break;
+  }
+
+  return data;
+};
 
 ///load meal by id
-const loadMealById = async(id) => {
-    
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
-    
-    if(response.status !== 200){
-        throw new Error("Could not load data!");
-    }
+const loadMealById = async (id) => {
+  const response = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+  );
 
-    const meal = await response.json();
-   
-    return meal.meals;
-}
+  if (response.status !== 200) {
+    throw new Error("Could not load data!");
+  }
+
+  const meal = await response.json();
+
+  return meal.meals;
+};
